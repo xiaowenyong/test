@@ -15,10 +15,11 @@
         var config = {video:true};
         //成功
         var self = this;
-        function success(stream) {
+        function success(stream) {//addEventListener
             //获得媒体对象，这里是获得额视频对象
-            self.mediaRecorder = new MediaRecorder(stream);
+            self.mediaRecoder = new MediaRecorder(stream);
             //监听一个事件  dataavilable是每次监听的媒体流
+            // var hhh = self.mediaRecoder;
             self.mediaRecoder.addEventListener("dataavailable",function (event) {
                 //buffers缓存  push像数组结尾添加一个元素，并返回新的长度
                 self.buffers.push(event.data);
@@ -38,7 +39,7 @@
         navigator.mediaDevices.getUserMedia(config).then(success).catch(fail);
         //监听方法
         Recoder.prototype.addEventListener = function () {
-            var self = this;
+            var self = this;//mediaRecorder
             this.mediaRecoder.addEventListener("stop",function () {
                 //把缓存数组转化成二进制一个对象 "video/webm"规定格式、
                 //blob文件对象
